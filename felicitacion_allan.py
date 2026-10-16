@@ -1,7 +1,7 @@
 """
-Felicitación rockera para Allan
+Felicitación para Allan
 Genera una página HTML y la abre en el navegador.
-Cada vez que se ejecuta (o se presiona el botón) sale un mensaje distinto.
+Autor: Annett Michell Rodríguez
 """
 import json
 import random
@@ -9,7 +9,7 @@ import webbrowser
 from pathlib import Path
 
 NOMBRE = "Allan"
-OCASION = "Happy Birthday!"   # cámbialo: "Congratulations!", "¡Felicidades!", etc.
+OCASION = "Happy Birthday!"   
 
 # 🎵 Canción de AC/DC: pega aquí el link de Spotify (canción) o de YouTube.
 #   Spotify → se muestra el reproductor dentro de la página.
