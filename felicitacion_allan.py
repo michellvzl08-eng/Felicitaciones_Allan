@@ -1,7 +1,7 @@
 """
-Felicitación para Allan
+Felicitación rockera para Allan
 Genera una página HTML y la abre en el navegador.
-Autor: Annett Michell Rodríguez
+Cada vez que se ejecuta (o se presiona el botón) sale un mensaje distinto.
 """
 import json
 import random
@@ -9,11 +9,11 @@ import webbrowser
 from pathlib import Path
 
 NOMBRE = "Allan"
-OCASION = "Happy Birthday!"   
+OCASION = "Happy Birthday!"   # cámbialo: "Congratulations!", "¡Felicidades!", etc.
 
 # 🎵 Canción de AC/DC: pega aquí el link de Spotify (canción) o de YouTube.
 #   Spotify → se muestra el reproductor dentro de la página.
-#   YouTube  → se muestra el video dentro de la página (con link para abrirlo en YouTube).
+#   YouTube  → el botón la abre en una pestaña nueva.
 CANCION = "https://www.youtube.com/watch?v=l482T0yNkeo"
 TITULO_CANCION = "Highway to Hell"
 
@@ -437,10 +437,11 @@ HTML = r"""<!doctype html>
     src:url(data:font/woff2;base64,__FUENTE__) format("woff2"); }
   :root { --neon:#ff2a2a; --oro:#ffcc00; --fondo:#0a0a0a; }
   * { box-sizing:border-box; margin:0; padding:0; }
+  html { overflow-x:hidden; }
   body {
     min-height:100vh; background:radial-gradient(circle at 50% 0%, #2a0000 0%, var(--fondo) 70%);
     color:#fff; font-family:'Montserrat',sans-serif; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; text-align:center; padding:24px 16px; overflow:hidden;
+    align-items:center; justify-content:center; text-align:center; padding:24px 16px 40px; overflow-x:hidden; overflow-y:auto;
   }
   /* Luces de escenario */
   .luz { position:fixed; top:-10vh; width:60vw; height:130vh; margin-left:-30vw; z-index:0; pointer-events:none;
@@ -455,10 +456,10 @@ HTML = r"""<!doctype html>
   @keyframes barrer  { from { transform:rotate(-30deg); } to { transform:rotate(30deg); } }
   @keyframes barrer2 { from { transform:rotate(-15deg); } to { transform:rotate(15deg); } }
 
-  h2 { font-family:'New Rocker',serif; font-size:clamp(2rem,8.5vw,3.4rem); font-weight:400; letter-spacing:2px; color:var(--oro);
+  h2 { font-family:'New Rocker',serif; font-size:clamp(1.6rem,min(8.5vw,6vh),3.4rem); font-weight:400; letter-spacing:2px; color:var(--oro);
        text-shadow:0 2px 6px #000, 0 0 14px #ffcc0066; position:relative; z-index:1; }
   h1 {
-    font-family:'New Rocker',serif; font-size:clamp(5rem,26vw,13rem); letter-spacing:3px; line-height:1.05; margin:4px 0;
+    font-family:'New Rocker',serif; font-size:clamp(4rem,min(26vw,20vh),13rem); letter-spacing:3px; line-height:1.05; margin:4px 0;
     -webkit-text-stroke:2px #1a0000; color:#fff2f2;
     text-shadow:2px 2px 0 #b30000,4px 4px 0 #7a0000,6px 6px 0 #3d0000,0 0 25px var(--neon),0 0 60px #ff000088;
     animation:parpadeo 5s infinite; position:relative; z-index:1;
@@ -593,15 +594,7 @@ document.getElementById('cancion').onclick = () => {
     document.getElementById('reproductor').innerHTML =
       '<iframe src="https://open.spotify.com/embed/track/' + m[1] + '?autoplay=1" allow="autoplay; encrypted-media"></iframe>';
   } else {
-    const y = urlCancion.match(/(?:youtu\.be\/|[?&]v=)([A-Za-z0-9_-]{11})/);
-    if (y) {
-      document.getElementById('reproductor').innerHTML =
-        '<iframe class="yt" src="https://www.youtube.com/embed/' + y[1] + '?autoplay=1" ' +
-        'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>' +
-        '<a class="abrir" href="' + urlCancion + '" target="_blank">¿No se reproduce? Ábrela en YouTube</a>';
-    } else {
-      window.open(urlCancion, '_blank');
-    }
+    window.open(urlCancion, '_blank');
   }
   lluviaCuernos();
 };
