@@ -1,7 +1,7 @@
 """
-Felicitación rockera para Allan
+Felicitación para Allan
 Genera una página HTML y la abre en el navegador.
-Cada vez que se ejecuta (o se presiona el botón) sale un mensaje distinto.
+Autor: Annette Michell Valenzuela
 """
 import json
 import random
